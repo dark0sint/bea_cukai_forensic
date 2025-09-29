@@ -1,0 +1,20 @@
+   <!DOCTYPE html>
+   <html lang="id">
+   <head>
+       <meta charset="UTF-8">
+       <title>Dashboard - Bea Cukai Forensic</title>
+       <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   </head>
+   <body>
+       <div class="container">
+           <h1>Selamat Datang, {{ user }}!</h1>
+           <nav>
+               <a href="{{ url_for('track') }}">Track Kegiatan</a> |
+               <a href="{{ url_for('forensic') }}">Analisis Forensik</a> |
+               <a href="{{ url_for('logout') }}">Logout</a>
+           </nav>
+           <p>Platform ini untuk tracking impor/ekspor dan analisis log forensik.</p>
+       </div>
+   </body>
+   </html>
+   
