@@ -1,0 +1,47 @@
+   <!DOCTYPE html>
+   <html lang="id">
+   <head>
+       <meta charset="UTF-8">
+       <title>Track Kegiatan - Bea Cukai</title>
+       <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   </head>
+   <body>
+       <div class="container">
+           <h1>Tracking Kegiatan Kepabeanan</h1>
+           <a href="{{ url_for('index') }}">Kembali ke Dashboard</a>
+           {% with messages = get_flashed_messages() %}
+               {% if messages %}
+                   <ul>
+                       {% for message in messages %}
+                           <li>{{ message }}</li>
+                       {% endfor %}
+                   </ul>
+               {% endif %}
+           {% endwith %}
+           <form method="POST">
+               <label>Nomor Kontainer:</label><input type="text" name="container" required><br>
+               <label>Tipe (impor/ekspor):</label><select name="type">
+                   <option value="impor">Impor</option>
+                   <option value="ekspor">Ekspor</option>
+               </select><br>
+               <label>Nilai Barang (Rp):</label><input type="number" name="value" required><br>
+               <button type="submit">Tambah Aktivitas</button>
+           </form>
+           <h2>Daftar Aktivitas</h2>
+           <table>
+               <tr><th>ID</th><th>Kontainer</th><th>Tipe</th><th>Nilai</th><th>Tanggal</th><th>Status</th></tr>
+               {% for act in activities %}
+               <tr>
+                   <td>{{ act.id }}</td>
+                   <td>{{ act.container }}</td>
+                   <td>{{ act.type }}</td>
+                   <td>{{ act.value }}</td>
+                   <td>{{ act.date[:10] }}</td>
+                   <td>{{ act.status }}</td>
+               </tr>
+               {% endfor %}
+           </table>
+       </div>
+   </body>
+   </html>
+   
